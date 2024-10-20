@@ -7,7 +7,7 @@
 
   <!-- GSAP Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
-
+  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
   <!-- Google Fonts -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
@@ -42,7 +42,7 @@
     /* Grid layout for Project Squares, 3 per row */
     .projects-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+      grid-template-columns: repeat(1, 1fr); /* 3 items per row */
       column-gap: 8px; /* Reduced horizontal gap */
       row-gap: 8px; /* Reduced vertical gap */
       justify-content: center; /* Center the grid horizontally */
@@ -71,23 +71,45 @@
 
     /* Glassy, Rounded Square (Project) */
     .project {
-      width: 250px; /* Increased width */
-      height: 40px; /* Keep height the same */
-      background: #5100cac8;
+      width: 1000px; /* Increased width */
+      height: 430px; /* Keep height the same */
+      background: #3b3a3c44;
       backdrop-filter: blur(10px);
-      border-radius: 20px;
+      border-radius: 3px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
       color: #fff;
       font-size: 1.1rem;
-      text-align: center;
       padding: 1rem;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease, background-color 0.3s ease;
-      cursor: pointer;
       text-decoration: none; /* Remove underline from links */
+    }
+
+    /* Title inside the Project Box */
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+
+    #rain-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .raindrop {
+      position: absolute;
+      background-image: linear-gradient(to bottom, #0036, rgb(157, 108, 255));
+      width: 3px;
+      height: 20px;
+      opacity: 0;
     }
     .header {
       color: white;
@@ -114,72 +136,44 @@
       display: flex;
       flex-direction: column; /* Stack headers vertically */
     }
-    /* Title inside the Project Box */
-    .project-title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Hover Effect for Project Squares */
-    .project:hover {
-      transform: scale(1.05);
-      background-color: #5a00e0da;
-    }
-
-    #rain-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .raindrop {
-      position: absolute;
-      background-image: linear-gradient(to bottom, #0036, rgb(157, 108, 255));
-      width: 3px;
-      height: 20px;
-      opacity: 0;
-    }
   </style>
 </head>
 <body>
 
   <!-- Big Text Heading -->
-  <div class="big-text">PROJECTS</div>
-
-  <!-- Grid layout for Projects -->
-  <div class="projects-container">
-    <a href="/projects/polsec" class="project">
-      <div class="project-title">PolSec</div>
-    </a>
-    <a href="/projects/quantum" class="project">
-      <div class="project-title">Quantum botting</div>
-    </a>
-    <a href="/projects/luarc" class="project">
-      <div class="project-title">Lua RC</div>
-    </a>
-    <a href="/projects/rosniper" class="project">
-      <div class="project-title">RoSniper</div>
-    </a>
-    <a href="/projects/nilite" class="project">
-      <div class="project-title">Nilite</div>
-    </a>
-    <a href="/projects/pestintegration" class="project">
-      <div class="project-title">Pest integration</div>
-    </a>
-  </div>
-
-  <div id="rain-container"></div>
+  <div class="big-text">QUANTUM</div>
   <div id="header-container">
     <a class="header" id="header1" href="/">Home</a>
     <a class="header" id="header2" href="/aboutme">About me</a>
     <a class="header" id="header3" href="/projects">Projects</a>
     <a class="header" id="header4" href="https://pastebin.com/raw/SK4Nyrtq">Contact me</a>
   </div>
+  <!-- Grid layout for Projects -->
+  <div class="projects-container">
+    <a class="project">
+        <md-block>
+            Status: <span style="color: rgb(255, 38, 0);">Discontinued</span>\
+            Quantum was a server where i sold roblox followers and other stuff \
+            Ofc because roblox has so good protections the 6 month old bot still works\
+            Sadly i had to shut down the service because roblox was mad at botting services and i didnt want to risk anything\
+            Features:
+            - Automatic payments and delivery
+            - Supported all types of roblox botting
+            - Good money maker (lulz)
+            - Queue system (inspired by those nitro snipers)
+
+            Types of botting we sold:
+            - Favorites (both game and items)
+            - Followers
+            - Group joins
+            - Reports
+            - Friend requests
+        </md-block>
+    </a>
+  </div>
+
+  <div id="rain-container"></div>
+
   <script>
     /* Configurations */
     const delayRain = 50;
