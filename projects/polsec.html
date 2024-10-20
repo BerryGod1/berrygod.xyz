@@ -39,34 +39,35 @@
       transform: translateX(-50%);
     }
 
-    /* Grid layout for Project Squares, 3 per row */
+    /* Grid layout for Project Squares */
     .projects-container {
       display: grid;
-      grid-template-columns: repeat(1, 1fr); /* 3 items per row */
-      column-gap: 8px; /* Reduced horizontal gap */
-      row-gap: 8px; /* Reduced vertical gap */
-      justify-content: center; /* Center the grid horizontally */
+      grid-template-columns: repeat(1, 1fr); /* 1 item per row */
+      column-gap: 8px;
+      row-gap: 8px;
+      justify-content: center;
       z-index: 1;
     }
 
+    /* Big Text Heading */
     .big-text {
       font-family: 'Lexend', sans-serif;
-      font-size: 7rem; /* Very large font size */
-      font-weight: 900; /* Bold weight */
-      color: transparent; /* Make text transparent */
-      background-image: url('Új projektx.png'); /* Your background image */
-      background-size: cover; /* Cover the entire text */
+      font-size: 7rem;
+      font-weight: 900;
+      color: transparent;
+      background-image: url('https://raw.githubusercontent.com/BerryGod1/berrygod.xyz/refs/heads/main/topograpicmap.png');
+      background-size: cover;
       background-position: center;
       background-clip: text;
-      -webkit-background-clip: text; /* For Webkit-based browsers */
-      -webkit-text-fill-color: transparent; /* Ensures background shows through text */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-align: center;
-      z-index: 1; /* Ensure it's above the raindrop layer */
-      position: absolute; /* Positioning the BERRYGOD text */
-      left: 50%; /* Center horizontally */
-      transform: translateX(-50%); /* Center horizontally */
-      top: 0; /* Align at the top */
-      margin-top: 10px; /* Optional: Add a little space between the top and text */
+      z-index: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      margin-top: 10px;
     }
 
     /* Glassy, Rounded Square (Project) */
@@ -84,7 +85,10 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease, background-color 0.3s ease;
       text-decoration: none; /* Remove underline from links */
+      overflow: hidden; /* Prevent content overflow */
+      overflow-y: auto; /* Allow vertical scrolling if content exceeds height */
     }
+
 
     /* Title inside the Project Box */
     .project-title {
@@ -93,7 +97,7 @@
       margin-bottom: 0.5rem;
     }
 
-
+    /* Raindrop Effect */
     #rain-container {
       position: absolute;
       top: 0;
@@ -111,30 +115,115 @@
       height: 20px;
       opacity: 0;
     }
+
+    /* Header Links */
     .header {
       color: white;
       font-family: 'Lexend', sans-serif;
-      font-size: 1.5rem; /* Initial smaller size */
-      text-decoration: none; /* Remove underline */
+      font-size: 1.5rem;
+      text-decoration: none;
       cursor: pointer;
       z-index: 1;
-      transition: all 0.3s ease; /* Smooth transition for hover effects */
-      margin: 10px 0; /* Space between headers */
+      transition: all 0.3s ease;
+      margin: 10px 0;
     }
 
     .header:hover {
-      font-size: 2.5rem; /* Increase size on hover */
-      color: blue; /* Change text color to blue on hover */
+      font-size: 2.5rem;
+      color: blue;
     }
 
-    /* Container for headers to keep them aligned vertically */
+    /* Container for headers */
     #header-container {
       position: absolute;
-      left: 20px; /* Align the headers near the left of the screen */
-      top: 50%; /* Center the headers vertically */
-      transform: translateY(-50%); /* Offset to truly center */
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
-      flex-direction: column; /* Stack headers vertically */
+      flex-direction: column;
+    }
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 1360px) {
+      .big-text {
+        font-size: 5rem;
+      }
+
+      .header {
+        font-size: 1.2rem;
+      }
+
+      .header:hover {
+        font-size: 1.6rem;
+      }
+
+      .project {
+        width: 90vw;
+        margin-bottom: 100px; /* Add more space below the project to avoid overlap */
+      }
+
+      #header-container {
+        left: 50%;
+        top: auto;
+        bottom: 15%; /* Move headers closer to the bottom */
+        transform: translateX(-50%);
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .big-text {
+        font-size: 4rem;
+      }
+
+      .header {
+        font-size: 1rem;
+      }
+
+      .header:hover {
+        font-size: 1.3rem;
+      }
+
+      .project {
+        width: 95vw;
+        margin-bottom: 120px; /* Increase space below project to avoid overlap */
+      }
+
+      #header-container {
+        left: 50%;
+        top: auto;
+        bottom: 15%; /* Adjust bottom margin */
+        transform: translateX(-50%);
+        align-items: center;
+      }
+    }
+    @media (max-width: 500px) {
+      .big-text {
+        font-size: 2rem;
+      }
+
+      .header {
+        font-size: 0.7rem;
+      }
+
+      .header:hover {
+        font-size: 1rem;
+      }
+
+      .project {
+        width: 95vw;
+        top: 50%;
+        margin-top: 30px;
+        margin-bottom: 160px; /* Increase space below project to avoid overlap */
+      }
+
+      #header-container {
+        left: 50%;
+        top: auto;
+        bottom: 5%; /* Adjust bottom margin */
+        transform: translateX(-50%);
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -142,36 +231,36 @@
 
   <!-- Big Text Heading -->
   <div class="big-text">POLSEC</div>
+
+  <!-- Header Links -->
   <div id="header-container">
     <a class="header" id="header1" href="/">Home</a>
     <a class="header" id="header2" href="/aboutme">About me</a>
     <a class="header" id="header3" href="/projects">Projects</a>
     <a class="header" id="header4" href="https://pastebin.com/raw/SK4Nyrtq">Contact me</a>
   </div>
+
   <!-- Grid layout for Projects -->
   <div class="projects-container">
     <a class="project">
-        <md-block>
-            Status: <span style="color: rgb(0, 255, 34);">Works</span>\
-            PolSec is a free whitelist system (not public) which i made to avoid the price of luarmor\
-            It prevents basic env tampering, function tampering, eq hooks, and jmps (these are really basic detections)\
-            Features:
-            - Discord bot
-            - Automatic payments
-            - Multi script support
-            - Advanced logs (IPs are not sent)
-            
-            Security features:
-            - Dynamic responses
-            - Encryption
-            - Randomness is based on ingame values too
-            - Heartbeats (Doesnt support solara)
-            - Basic tampering detections
-            
-        </md-block>
+      <md-block>
+        Status: <span style="color: rgb(0, 255, 34);">**Working**</span> PolSec is a free whitelist system (not public) which I made to avoid the price of luarmor. It prevents basic env tampering, function tampering, eq hooks, and jmps (these are really basic detections).
+        <br><br>Features:
+        <br>- Discord bot
+        <br>- Automatic payments
+        <br>- Multi script support
+        <br>- Advanced analytics (IPs are not sent)
+        <br><br>Security features:
+        <br>- Dynamic responses
+        <br>- Encryption
+        <br>- Randomness is based on in-game values too
+        <br>- Heartbeats (Doesn't support Solara)
+        <br>- Basic tampering detections
+      </md-block>
     </a>
   </div>
 
+  <!-- Raindrop Effect -->
   <div id="rain-container"></div>
 
   <script>

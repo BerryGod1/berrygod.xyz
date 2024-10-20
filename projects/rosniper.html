@@ -1,12 +1,303 @@
-<!DOCTYPE html>	
-<html lang="en">	
-<head>	
-    <meta charset="UTF-8">	
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">	
-    <title>BerryGod</title>	
-</head>	
-<body>	
-    <p>coming soon</p>	
-</body>	
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BerryGod</title>
+
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
+  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+  <!-- Google Fonts -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+  </style>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Lexend', sans-serif;
+      color: #fff;
+      position: relative;
+    }
+
+    /* Large Heading on Top */
+    h1 {
+      font-size: 6vw;
+      text-align: center;
+      margin-top: 1rem;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Grid layout for Project Squares */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr); /* 1 item per row */
+      column-gap: 8px;
+      row-gap: 8px;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    /* Big Text Heading */
+    .big-text {
+      font-family: 'Lexend', sans-serif;
+      font-size: 7rem;
+      font-weight: 900;
+      color: transparent;
+      background-image: url('https://raw.githubusercontent.com/BerryGod1/berrygod.xyz/refs/heads/main/topograpicmap.png');
+      background-size: cover;
+      background-position: center;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      z-index: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      margin-top: 10px;
+    }
+
+    /* Glassy, Rounded Square (Project) */
+    .project {
+      width: 1000px; /* Increased width */
+      height: 120px; /* Keep height the same */
+      background: #3b3a3c44;
+      backdrop-filter: blur(10px);
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      font-size: 1.1rem;
+      padding: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      text-decoration: none; /* Remove underline from links */
+      overflow: hidden; /* Prevent content overflow */
+      overflow-y: auto; /* Allow vertical scrolling if content exceeds height */
+    }
+
+
+    /* Title inside the Project Box */
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Raindrop Effect */
+    #rain-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .raindrop {
+      position: absolute;
+      background-image: linear-gradient(to bottom, #0036, rgb(157, 108, 255));
+      width: 3px;
+      height: 20px;
+      opacity: 0;
+    }
+
+    /* Header Links */
+    .header {
+      color: white;
+      font-family: 'Lexend', sans-serif;
+      font-size: 1.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      z-index: 1;
+      transition: all 0.3s ease;
+      margin: 10px 0;
+    }
+
+    .header:hover {
+      font-size: 2.5rem;
+      color: blue;
+    }
+
+    /* Container for headers */
+    #header-container {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 1360px) {
+      .big-text {
+        font-size: 5rem;
+      }
+
+      .header {
+        font-size: 1.2rem;
+      }
+
+      .header:hover {
+        font-size: 1.6rem;
+      }
+
+      .project {
+        width: 90vw;
+        margin-bottom: 100px; /* Add more space below the project to avoid overlap */
+      }
+
+      #header-container {
+        left: 50%;
+        top: auto;
+        bottom: 15%; /* Move headers closer to the bottom */
+        transform: translateX(-50%);
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .big-text {
+        font-size: 4rem;
+      }
+
+      .header {
+        font-size: 1rem;
+      }
+
+      .header:hover {
+        font-size: 1.3rem;
+      }
+
+      .project {
+        width: 95vw;
+        margin-bottom: 120px; /* Increase space below project to avoid overlap */
+      }
+
+      #header-container {
+        left: 50%;
+        top: auto;
+        bottom: 15%; /* Adjust bottom margin */
+        transform: translateX(-50%);
+        align-items: center;
+      }
+    }
+    @media (max-width: 500px) {
+      .big-text {
+        font-size: 2rem;
+      }
+
+      .header {
+        font-size: 0.7rem;
+      }
+
+      .header:hover {
+        font-size: 1rem;
+      }
+
+      .project {
+        width: 95vw;
+        top: 50%;
+        margin-top: 30px;
+        margin-bottom: 160px; /* Increase space below project to avoid overlap */
+      }
+
+      #header-container {
+        left: 50%;
+        top: auto;
+        bottom: 5%; /* Adjust bottom margin */
+        transform: translateX(-50%);
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Big Text Heading -->
+  <div class="big-text">ROSNIPER</div>
+
+  <!-- Header Links -->
+  <div id="header-container">
+    <a class="header" id="header1" href="/">Home</a>
+    <a class="header" id="header2" href="/aboutme">About me</a>
+    <a class="header" id="header3" href="/projects">Projects</a>
+    <a class="header" id="header4" href="https://pastebin.com/raw/SK4Nyrtq">Contact me</a>
+  </div>
+
+  <!-- Grid layout for Projects -->
+  <div class="projects-container">
+    <a class="project">
+      <md-block>
+        Status: <span style="color: rgb(255, 38, 0);">**Discontinued**</span>\
+        RoSniper was a roblox username sniper which was really customizable\
+        I guess RoSniper's biggest feature was the fast auto account registering which was limited by **[Capbypass](https://capbypass.com)**
+      </md-block>
+    </a>
+  </div>
+
+  <!-- Raindrop Effect -->
+  <div id="rain-container"></div>
+
+  <script>
+    /* Configurations */
+    const delayRain = 50;
+
+    /* Main Program */
+    const rainContainer = document.getElementById("rain-container");
+
+    // Function to create a random number within a given range
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    // Function to create raindrops
+    function createRaindrop() {
+      const raindrop = document.createElement("div");
+      raindrop.className = "raindrop";
+      rainContainer.appendChild(raindrop);
+
+      const startX = random(0, window.innerWidth);
+      const startY = random(-10, -5);
+      const duration = random(0.5, 2);
+
+      gsap.fromTo(
+        raindrop,
+        { x: startX, y: startY, opacity: 1 },
+        {
+          x: startX + 20,
+          y: window.innerHeight + 20,
+          opacity: 0,
+          duration,
+          ease: "linear",
+          onComplete: () => {
+            rainContainer.removeChild(raindrop);
+          }
+        }
+      );
+    }
+
+    // Periodically create raindrops
+    setInterval(() => {
+      createRaindrop();
+    }, delayRain);
+  </script>
+
+</body>
 </html>
