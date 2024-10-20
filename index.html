@@ -163,13 +163,12 @@
       return Math.random() * (max - min) + min;
     }
 
-    // Function to create raindrops
     function createRaindrop() {
       const raindrop = document.createElement("div");
       raindrop.className = "raindrop";
       rainContainer.appendChild(raindrop);
 
-      const startX = random(0, window.innerWidth);
+      const startX = random(0, window.innerWidth*0.9);
       const startY = random(-10, -5);
       const duration = random(0.5, 2);
 
@@ -177,8 +176,8 @@
         raindrop,
         { x: startX, y: startY, opacity: 1 },
         {
-          x: startX + 20,
-          y: window.innerHeight + 20,
+          x: startX,
+          y: window.innerWidth*0.95,
           opacity: 0,
           duration,
           ease: "linear",
