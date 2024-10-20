@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
 
   <!-- GSAP Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
-
+  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
   <!-- Google Fonts -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
@@ -28,6 +29,7 @@
       position: relative;
     }
 
+    /* Large Heading on Top */
     h1 {
       font-size: 6vw;
       text-align: center;
@@ -38,15 +40,17 @@
       transform: translateX(-50%);
     }
 
+    /* Grid layout for Project Squares */
     .projects-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(1, 1fr); /* 1 item per row */
       column-gap: 8px;
       row-gap: 8px;
       justify-content: center;
       z-index: 1;
     }
 
+    /* Big Text Heading */
     .big-text {
       font-family: 'Lexend', sans-serif;
       font-size: 7rem;
@@ -67,62 +71,34 @@
       margin-top: 10px;
     }
 
+    /* Glassy, Rounded Square (Project) */
     .project {
-      width: 250px;
-      height: 40px;
-      background: #5100cac8;
+      width: 1000px; /* Increased width */
+      height: 150px; /* Keep height the same */
+      background: #3b3a3c44;
       backdrop-filter: blur(10px);
-      border-radius: 20px;
+      border-radius: 3px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
       color: #fff;
       font-size: 1.1rem;
-      text-align: center;
       padding: 1rem;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease, background-color 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
+      text-decoration: none; /* Remove underline from links */
+      overflow: hidden; /* Prevent content overflow */
+      overflow-y: auto; /* Allow vertical scrolling if content exceeds height */
     }
 
-    .header {
-      color: white;
-      font-family: 'Lexend', sans-serif;
-      font-size: 1.5rem;
-      text-decoration: none;
-      cursor: pointer;
-      z-index: 1;
-      transition: all 0.3s ease;
-      margin: 10px 0;
-    }
 
-    .header:hover {
-      font-size: 2.5rem;
-      color: blue;
-    }
-
-    #header-container {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-    }
-
+    /* Title inside the Project Box */
     .project-title {
       font-size: 1.4rem;
       font-weight: bold;
       margin-bottom: 0.5rem;
     }
 
-    .project:hover {
-      transform: scale(1.05);
-      background-color: #5a00e0da;
-    }
-
+    /* Raindrop Effect */
     #rain-container {
       position: absolute;
       top: 0;
@@ -141,84 +117,123 @@
       opacity: 0;
     }
 
-    /* Mobile Styles */
-    @media only screen and (max-width: 768px) {
-      body {
-        height: auto;
-        overflow-y: auto;
-        padding: 1rem;
-      }
+    /* Header Links */
+    .header {
+      color: white;
+      font-family: 'Lexend', sans-serif;
+      font-size: 1.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      z-index: 1;
+      transition: all 0.3s ease;
+      margin: 10px 0;
+    }
 
+    .header:hover {
+      font-size: 2.5rem;
+      color: blue;
+    }
+
+    /* Container for headers */
+    #header-container {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 1360px) {
       .big-text {
-        font-size: 3rem; /* Reduce size for mobile */
+        font-size: 5rem;
       }
 
-      .projects-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 items per row on tablets */
-        gap: 10px;
-        margin-top: 60px;
+      .header {
+        font-size: 1.2rem;
+      }
+
+      .header:hover {
+        font-size: 1.6rem;
       }
 
       .project {
-        width: 100%; /* Full width for mobile */
-        height: auto;
+        width: 90vw;
+        margin-bottom: 100px; /* Add more space below the project to avoid overlap */
       }
 
       #header-container {
-        position: static;
-        margin-top: 50px;
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
+        left: 50%;
+        top: auto;
+        bottom: 15%; /* Move headers closer to the bottom */
+        transform: translateX(-50%);
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .big-text {
+        font-size: 4rem;
       }
 
       .header {
         font-size: 1rem;
       }
-    }
 
-    @media only screen and (max-width: 480px) {
-      .projects-container {
-        grid-template-columns: 1fr; /* 1 item per row on mobile */
+      .header:hover {
+        font-size: 1.3rem;
       }
 
+      .project {
+        width: 95vw;
+        margin-bottom: 120px; /* Increase space below project to avoid overlap */
+      }
+
+      #header-container {
+        left: 50%;
+        top: auto;
+        bottom: 15%; /* Adjust bottom margin */
+        transform: translateX(-50%);
+        align-items: center;
+      }
+    }
+    @media (max-width: 500px) {
       .big-text {
-        font-size: 2rem; /* Further reduce for smaller screens */
+        font-size: 2rem;
       }
 
       .header {
-        font-size: 0.9rem; /* Reduce header size */
+        font-size: 0.7rem;
+      }
+
+      .header:hover {
+        font-size: 1rem;
+      }
+
+      .project {
+        width: 95vw;
+        top: 50%;
+        margin-top: 30px;
+        margin-bottom: 160px; /* Increase space below project to avoid overlap */
+      }
+
+      #header-container {
+        left: 50%;
+        top: auto;
+        bottom: 5%; /* Adjust bottom margin */
+        transform: translateX(-50%);
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="big-text">PROJECTS</div>
+  <!-- Big Text Heading -->
+  <div class="big-text">About me</div>
 
-  <div class="projects-container">
-    <a href="/projects/polsec" class="project">
-      <div class="project-title">PolSec</div>
-    </a>
-    <a href="/projects/quantum" class="project">
-      <div class="project-title">Quantum botting</div>
-    </a>
-    <a href="/projects/luarc" class="project">
-      <div class="project-title">Lua RC</div>
-    </a>
-    <a href="/projects/rosniper" class="project">
-      <div class="project-title">RoSniper</div>
-    </a>
-    <a href="/projects/nilite" class="project">
-      <div class="project-title">Nilite</div>
-    </a>
-    <a href="/projects/pestintegration" class="project">
-      <div class="project-title">PI</div>
-    </a>
-  </div>
-
-  <div id="rain-container"></div>
-
+  <!-- Header Links -->
   <div id="header-container">
     <a class="header" id="header1" href="/">Home</a>
     <a class="header" id="header2" href="/aboutme">About me</a>
@@ -226,14 +241,35 @@
     <a class="header" id="header4" href="https://pastebin.com/raw/SK4Nyrtq">Contact me</a>
   </div>
 
+  <!-- Grid layout for Projects -->
+  <div class="projects-container">
+    <a class="project">
+      <md-block>
+        Hi! Im BerryGod a 16 yo hungarian\
+        I like making projects for fun (and money 💸)\
+        I know Lua, Python and some web development\
+        My bigger projects can be found here: **[Projects](https://berrygod.xyz/projects)**\
+        Im taking commissions for cheap (Dm me on discord)
+      </md-block>
+    </a>
+  </div>
+
+  <!-- Raindrop Effect -->
+  <div id="rain-container"></div>
+
   <script>
+    /* Configurations */
     const delayRain = 50;
+
+    /* Main Program */
     const rainContainer = document.getElementById("rain-container");
 
+    // Function to create a random number within a given range
     function random(min, max) {
       return Math.random() * (max - min) + min;
     }
 
+    // Function to create raindrops
     function createRaindrop() {
       const raindrop = document.createElement("div");
       raindrop.className = "raindrop";
@@ -259,6 +295,7 @@
       );
     }
 
+    // Periodically create raindrops
     setInterval(() => {
       createRaindrop();
     }, delayRain);
